@@ -1,0 +1,13 @@
+{
+    "topics": {
+        "machine_learning": [
+            {"question": "What is supervised learning?", "context": "Supervised learning uses labeled data for training a model."}
+        ],
+        "data_structures": [
+            {"question": "Explain a linked list?", "context": "A linked list is a linear data structure consisting of nodes."}
+        ],
+        "algorithms": [
+            {"question": "What is a binary search?", "context": "Binary search is a divide-and-conquer algorithm for finding an element."}
+        ]
+    }
+}
