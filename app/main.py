@@ -1,40 +1,33 @@
 import json
-import os
 from transformers import pipeline
 
 def load_model():
-    """Load the BERT model for question answering."""
     return pipeline("question-answering", model="bert-large-uncased-whole-word-masking-finetuned-squad")
 
-def load_questions(file_path=os.path.join("../data", "interview_questions.json")):
-    """Load questions from a JSON file."""
+def load_custom_dataset(file_path):
     with open(file_path, "r") as f:
-        return json.load(f)["topics"]
+        return json.load(f)["data"]
 
 def answer_question(qa_pipeline, question, context):
-    """Use the model to answer a question."""
     return qa_pipeline(question=question, context=context)["answer"]
 
 def main():
     qa_pipeline = load_model()
-    topics = load_questions()
+    dataset = load_custom_dataset("data/custom_interview_questions.json")
 
-    print("Available Topics:")
-    for idx, topic in enumerate(topics.keys(), start=1):
-        print(f"{idx}. {topic.replace(_,  ).title()}")
-
-    # User selects a topic
-    choice = int(input("\nSelect a topic by number: ")) - 1
-    selected_topic = list(topics.keys())[choice]
-
-    print(f"\nYou selected: {selected_topic.replace(_,  ).title()}\n")
-
-    # Ask questions under the selected topic
-    questions = topics[selected_topic]
-    for idx, item in enumerate(questions, start=1):
-        print(f"Q{idx}: {item[question]}")
-        answer = answer_question(qa_pipeline, item[question], item[context])
-        print(f"💡 Answer: {answer}\n")
+    print("Evaluating on Custom Interview Dataset...\n")
+    for topic in dataset:
+        print(f"Topic: {topic['title'].replace('_', ' ').title()}")
+        for paragraph in topic["paragraphs"]:
+            context = paragraph["context"]
+            for qa in paragraph["qas"]:
+                question = qa["question"]
+                expected_answer = qa["answers"][0]["text"]
+                model_answer = answer_question(qa_pipeline, question, context)
+                print(f"Q: {question}")
+                print(f"🔍 Expected Answer: {expected_answer}")
+                print(f"💡 Model Answer: {model_answer}")
+                print("-" * 50)
 
 if __name__ == "__main__":
     main()

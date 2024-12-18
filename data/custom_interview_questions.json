@@ -1,0 +1,52 @@
+{
+  "data": [
+    {
+      "title": "machine_learning",
+      "paragraphs": [
+        {
+          "context": "Supervised learning is a type of machine learning where a model is trained on labeled data. The model learns to map input data to the correct output using examples.",
+          "qas": [
+            {
+              "id": "ml_1",
+              "question": "What is supervised learning?",
+              "answers": [
+                {"text": "trained on labeled data", "answer_start": 53}
+              ]
+            },
+            {
+              "id": "ml_2",
+              "question": "What does supervised learning use for training?",
+              "answers": [
+                {"text": "labeled data", "answer_start": 53}
+              ]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "title": "data_structures",
+      "paragraphs": [
+        {
+          "context": "A linked list is a linear data structure where elements are stored in nodes. Each node contains data and a reference to the next node in the sequence.",
+          "qas": [
+            {
+              "id": "ds_1",
+              "question": "What is a linked list?",
+              "answers": [
+                {"text": "a linear data structure where elements are stored in nodes", "answer_start": 20}
+              ]
+            },
+            {
+              "id": "ds_2",
+              "question": "What does each node in a linked list contain?",
+              "answers": [
+                {"text": "data and a reference to the next node", "answer_start": 77}
+              ]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
